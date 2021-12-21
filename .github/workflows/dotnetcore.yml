@@ -42,4 +42,4 @@ jobs:
       shell: pwsh
     - name: publish to nuget
       run: |
-          dotnet nuget push ./Paysafe/out/Paysafe-sdk-csharp.*.nupkg -k ${{ secrets.Nuget_tristan }} -s https://api.nuget.org/v3/index.json
+          dotnet nuget push ./Paysafe/out/Paysafe.NetStandard.*.nupkg -k ${{ secrets.Nuget_tristan }} -s https://api.nuget.org/v3/index.json
