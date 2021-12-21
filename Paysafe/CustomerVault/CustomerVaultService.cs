@@ -331,6 +331,30 @@ namespace Paysafe.CustomerVault
         }
 
         /// <summary>
+        /// Create card token
+        /// </summary>
+        /// <param name="cardToken">CardToken</param>
+        /// <returns>CardToken</returns>
+        public CardToken createtoken(CardToken cardToken)
+        {
+            cardToken.setRequiredFields(new List<string> {
+                CustomerVaultConstants.card,
+                CustomerVaultConstants.billingAddress
+            });
+            cardToken.checkRequiredFields();
+
+            Request request = new Request(
+                method: RequestType.POST,
+                uri: this.prepareURI("/singleusetokens"),
+                body: cardToken
+            );
+            dynamic response = this.client.processRequest(request);
+
+            CardToken returnVal = new CardToken(response);
+            return returnVal;
+        }
+
+        /// <summary>
         /// update Profile  
         /// </summary>
         /// <param name="profile">Profile</param>

@@ -182,6 +182,7 @@ namespace Paysafe.Common
         public static readonly string threeDEnrollment = "threeDEnrollment";
         public static readonly string threeDEnrolment = "threeDEnrolment";
         public static readonly string threeDResult = "threeDResult";
+        public static readonly string timeToLiveSeconds = "timeToLiveSeconds";
         public static readonly string totalAmount = "totalAmount";
         public static readonly string track1 = "track1";
         public static readonly string track2 = "track2";

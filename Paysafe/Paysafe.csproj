@@ -4,7 +4,7 @@
     <ProjectGuid>{1AA4F97B-967A-4420-B3CC-EF1EFBAA72F8}</ProjectGuid>
     <PackageId>Paysafe.NetStandard</PackageId>
     <AssemblyName>Paysafe.NetStandard</AssemblyName>
-    <VersionPrefix>1.0.0</VersionPrefix>
+    <VersionPrefix>1.1.0</VersionPrefix>
     <PackageProjectUrl>https://github.com/mrtristan/Paysafe.NetStandard</PackageProjectUrl>
     <RepositoryUrl>https://github.com/mrtristan/Paysafe.NetStandard.git</RepositoryUrl>
     <Description>
