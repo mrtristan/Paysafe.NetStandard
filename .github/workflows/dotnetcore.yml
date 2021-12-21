@@ -1,0 +1,45 @@
+name: .NET Core
+
+on: push
+
+# vm contents
+# https://github.com/actions/virtual-environments/tree/main/images/linux
+
+# shell notes
+# https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#using-a-specific-shell
+
+# default env vars:
+# https://docs.github.com/en/actions/configuring-and-managing-workflows/using-environment-variables#default-environment-variables
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      DOTNET_NOLOGO: true
+    steps:
+    - uses: actions/checkout@v1
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1.7.2
+      with:
+        dotnet-version: 2.1.809
+    - name: dotnet clean
+      run: |
+          cd Paysafe
+          dotnet clean
+    - name: dotnet build
+      run: |
+          cd Paysafe
+          $branch = @($env:GITHUB_REF -split "/")[-1]
+          if($branch -eq "master")
+          {
+            dotnet build --configuration Release
+            dotnet pack --no-build --configuration Release -o out
+          }else {
+            $runNumber = $env:GITHUB_RUN_NUMBER
+            dotnet build --configuration Release --version-suffix "$branch$runNumber"
+            dotnet pack --no-build --configuration Release --version-suffix "$branch$runNumber" -o out
+          }
+      shell: pwsh
+    - name: publish to nuget
+      run: |
+          dotnet nuget push ./Paysafe/out/Paysafe-sdk-csharp.*.nupkg -k ${{ secrets.Nuget_tristan }} -s https://api.nuget.org/v3/index.json
