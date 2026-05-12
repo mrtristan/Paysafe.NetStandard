@@ -211,19 +211,19 @@ namespace Paysafe
                 string requestBody = request.body();
                 byte[] requestData = Encoding.UTF8.GetBytes(requestBody);
 
-                var resultRequest = conn.BeginGetRequestStream(null, null);
-                Stream postStream = conn.EndGetRequestStream(resultRequest);
-                postStream.Write(requestData, 0, requestData.Length);
-                postStream.Dispose();
+                using (Stream postStream = conn.GetRequestStream())
+                {
+                    postStream.Write(requestData, 0, requestData.Length);
+                }
             }
 
             try
             {
-                var responseRequest = conn.BeginGetResponse(null, null);
-                WebResponse responseObject = conn.EndGetResponse(responseRequest);
-
-                StreamReader sr = new StreamReader(responseObject.GetResponseStream());
-                return PaysafeApiClient.parseResponse(sr.ReadToEnd());
+                using (WebResponse responseObject = conn.GetResponse())
+                using (StreamReader sr = new StreamReader(responseObject.GetResponseStream()))
+                {
+                    return PaysafeApiClient.parseResponse(sr.ReadToEnd());
+                }
             }
             catch (System.Net.WebException ex)
             {
