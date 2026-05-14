@@ -1,18 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;net10.0</TargetFrameworks>
     <ProjectGuid>{1AA4F97B-967A-4420-B3CC-EF1EFBAA72F8}</ProjectGuid>
     <PackageId>Paysafe.NetStandard</PackageId>
     <AssemblyName>Paysafe.NetStandard</AssemblyName>
-    <VersionPrefix>1.1.1</VersionPrefix>
+    <VersionPrefix>1.1.2</VersionPrefix>
     <PackageProjectUrl>https://github.com/mrtristan/Paysafe.NetStandard</PackageProjectUrl>
     <RepositoryUrl>https://github.com/mrtristan/Paysafe.NetStandard.git</RepositoryUrl>
     <Description>
-      Paysafe Payments C# SDK. (netstandard2.0)
+      Paysafe Payments C# SDK. (netstandard2.0, net10.0)
     </Description>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
   </ItemGroup>
 </Project>
